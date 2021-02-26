@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Regional Recipes</title>
+    <link rel="icon" href="favicon.png">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <!-- items filtered from http://www.desiquintans.com/downloads/nounlist/nounlist.txt -->
+    <div id='infoContainer'>
+      <div>
+        <div><span class='label'>Region Name: </span><span id='regionName'>?</span></div>
+        <div>
+          <img src='./r0.png' id='imgr0' class='hidden'>
+          <img src='./r1.png' id='imgr1' class='hidden'>
+          <img src='./r2.png' id='imgr2' class='hidden'>
+          <img src='./r3.png' id='imgr3' class='hidden'>
+        </div>
+        <div><span class='label'>City Name: </span><span id='cityName'>?</span></div>
+        <div><span class='label'>Cash: </span><span id='cashVal'></span></div>
+      </div>
+      <table>
+        <tr><th>Upgrade</th>                                                          <th>Current Val</th>        <th>Cost</th>                <th></th></tr>
+        <tr><td title='Number of inputs required to build 1 item'>Input Count</td>    <td id='reqCountVal'>?</td> <td id='reqCountCost'>?</td> <td><button id='reqCountBtn'>Buy</button></td></tr>
+        <tr><td title='Number of items to sell per second'>Sell Rate</td>             <td id='sellRateVal'>?</td> <td id='sellRateCost'>?</td> <td><button id='sellRateBtn'>Buy</button></td></tr>
+        <tr><td title='Number of items to build per input count'>Build Multiplier</td><td id='buildMultVal'>?</td><td id='buildMultCost'>?</td><td><button id='buildMultBtn'>Buy</button></td></tr>
+        <tr><td title='Max number of items to build per tick'>Max Build</td>          <td id='maxBuildVal'>?</td> <td id='maxBuildCost'>?</td> <td><button id='maxBuildBtn'>Buy</button></td></tr>
+      </table>
+    </div>
+    <div id='regionsContainer'>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

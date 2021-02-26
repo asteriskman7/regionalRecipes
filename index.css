@@ -1,0 +1,90 @@
+/*
+  .class
+  #id
+*/
+
+:root {
+  --r0c: hsl(5, 66%, 68%);
+  --r1c: hsl(65, 66%, 68%);
+  --r2c: hsl(236, 66%, 68%);
+  --r3c: hsl(125, 66%, 68%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: hsl(41, 36%, 84%);
+}
+
+#infoContainer {
+  margin-left: 1em;
+  display: grid;
+  grid-template-columns: 200px 400px;
+}
+
+th {
+  text-align: left;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.hidden {
+  display: none;
+}
+
+.regionImg {
+  display: block;
+  width: 100px;
+}
+
+#regionsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.regionContainer {
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+#region0Container {
+  background: var(--r0c);
+}
+
+#region1Container {
+  background: var(--r1c);
+}
+
+#region2Container {
+  background: var(--r2c);
+}
+
+#region3Container {
+  background: var(--r3c);
+}
+
+.regionLabel {
+  font-size: large;
+  font-weight: 600;
+}
+
+.regionUL {
+}
+
+.regionLI {
+  display: grid;
+  grid-template-columns: 3.5em repeat(3, 1fr);
+}
+
+.itemHighlight {
+  outline: 2px solid black;
+}
+
+.reqHighlight {
+  outline: 1px solid black;
+}
