@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Regional Recipes</title>
+    <title>regionalRecipes</title>
     <link rel="icon" href="favicon.png">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="index.css">
@@ -29,6 +29,8 @@
         <tr><td title='Max number of items to build per tick'>Max Build</td>          <td id='maxBuildVal'>?</td> <td id='maxBuildCost'>?</td> <td><button id='maxBuildBtn'>Buy</button></td></tr>
       </table>
     </div>
+    <div><span class='label'>Last Export: </span><input type='text' id='exportText' class='codeBox'></input></div>
+    <div><span class='label'>Import String: </span><input type='text' id='importText' class='codeBox'></input><button id='btnImport'>Import</button></div>
     <div id='regionsContainer'>
     </div>
     <script src="index.js"></script>

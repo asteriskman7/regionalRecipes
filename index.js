@@ -2,27 +2,17 @@
 
 /*
 TODO:
-  how to transmit recipes?
-    encode using sender's username as key
-    include item name (or number?), item count, extra transmit id,
-      transmit id does not get repeated for a given user
-  how to receive recipes?
-  how to avoid receiving same item string multiple times?
-    add transmit id to transmit string 
   display item value
-  display upgrade cost
   display item rates for non-region items
   only enable upgrade buttons when purchasable
   display item rates and purchase info and enable button when available and make button do something
-  give option to transmit items
-  give option to receive items
   give option to disable buidling so you can collect items for transport
 
 */
 
 class App {
   constructor() {
-    this.regionNames = 'Volcano,Dessert,Ice,Forest'.split`,`;
+    this.regionNames = 'Volcano,Desert,Ice,Forest'.split`,`;
     this.itemList = "stake,youth,spear,tag,blade,team,drake,aide,lord,slope,depot,cacao,dart,cash,enemy,corn,chalk,brace,vodka,pit,beet,pay,group,usher,lad,bark,means,toot,owl,noun,pecan,query,belt,chip,tower,plow,lyre,cone,fate,feast,equal,envy,crop,giant,inbox,feel,stalk,yoga,down,eaves,color,guess,hit,epoxy,mix,suck,rider,cube,nuke,shop,class,prow,prior,flat,spine,fob,gun,wrap,manor,ore,right,inn,verb,swamp,cot,pain,snow,bead,tour,wheat,price,taco,yang,pupa,slash,song,pole,kitty,jeep,dump,deed,match,novel,bake,spell,toy,dozen,start,crate,drug,baby,perch,birch,oil,purse,uncle,cow,mass,leek,perp,snuck,boar,fawn,seal,scene,wok,opium,sheet,top,shore,tap,radar,text,prose,hire,ear,chap,drama,syrup,mud,kazoo,past,age,body,share,west,drag,treat,habit,wharf,wit,tenet,bread,depth,wave,whale,talk,fig,asset,turf,shed,lag,trout,upper,aside,craw,beach,glass,tale,finer,canal,blog,topic,loaf,kale,gold,info,claw,storm,need,hop,chaos,genre,tweet,lark,hide,maple,cap,chin,yam,wind,louse,aim,back,adobe,gown,smog,spud,dwell,floor,dune,grace,goat,owner,grill,front,frost,sash,tuber,spelt,aid,icing,bulk,hill,venom,wine,clank,towel,skin,lieu,fold,meat,boot,level,derby,wheel,brood,short,bend,brand,jump,grin,cycle,bun,scope,wear,hold,glue,latte,stone,math,coat,purr,raft,pun,white,bug,wrong,wreck,slide,sprag,guava,torte,dryer,canoe,hobby,curl,yolk,fill,hope,slaw,mover,month,dip,coil,drive,light,chasm,pearl,pig,mango,media,drain,tune,madam,taste,dime,blast,paint,gnat,stot,roar,sail,film,panda,sill,dance,harm,pimp,pizza,hunt,kill,tempo,bet,wifi,grain,net,rug,actor,hint,crow,brick,cub,mint,spite,potty,lily,glen,humor,party,lung,ferry,lipid,pad,pen,wild,yard,final,pupil,bath,waist,kite,elver,link,opera,unity,cello,clamp,wage,dare,put,grey,stand,troop,hound,merit,bride,thump,air,movie,puma,arrow,fund,bidet,row,poker,break,eye,heir,park,sonar,birth,cross,glee,hose,sense,niece,lane,cabin,monk,lace,fairy,quest,puppy,king,pond,bird,chill,fail,attic,foray,claim,proof,bail,bayou,pork,seed,basin,jack,print,hug,tub,hub,graft,liver,vest,leaf,gem,donut,sari,patty,event,chord,wish,poem,stop,squid,oboe,fruit,show,bunch,sushi,mound,twist,south,meal,food,few,mark,candy".split`,`;
     this.loadState();
     this.initUI(); 
@@ -179,6 +169,13 @@ class App {
     });
 
     this.drawUpgradeDisplay();
+
+    document.getElementById('btnImport').onclick = () => this.doImport();
+
+    //save misc elements
+    'exportText,importText'.split`,`.forEach( id => {
+      this.UI[id] = document.getElementById(id);
+    });
 
     //setup region containers
     const allRegionsContainer = document.getElementById('regionsContainer');
@@ -387,8 +384,13 @@ class App {
     const code = this.encode(this.state.cityName, `[${nonce},${itemCount},${itemIndex}]`);
     this.state.itemStates[itemIndex].count -= itemCount;
     this.drawItemCount(region, localIndex, itemIndex);
- 
-    console.log(`["${this.state.cityName}", "${itemName}", "${code}"]`);
+
+    const exportString = `["${this.state.cityName}","${itemName}","${code}"]`;
+
+    this.UI.exportText.value = exportString;
+    this.UI.exportText.select();
+    this.UI.exportText.setSelectionRange(0, 99999);
+    document.execCommand('copy');
   }
 
   exportItemForce(region, localIndex, itemCount) {
@@ -404,6 +406,11 @@ class App {
     return `["${this.state.cityName}", "${itemName}", "${code}"]`;
   }
 
+  doImport() {
+    const importString = this.UI.importText.value;
+    this.importItem(importString);
+    this.UI.importText.value = '';
+  }
 
   importItem(importString) {
     try {
@@ -449,8 +456,11 @@ class App {
 
       this.state.consumedImports[icode] = 1;
 
+      const itemName = this.itemList[iindex];
+      alert(`Successfully imported ${icount} x ${itemName}!`);
+
     } catch (error) {
-      console.log(`Unable to import string "${importString}". Expected something like '["city", "item", "code"]' or this code has already been imported.`);
+      alert(`Unable to import string "${importString}". Expected something like '["city","item","code"]' or this code has already been imported.`);
     }
   }
 }

@@ -16,11 +16,11 @@
 }
 
 body {
-  background: hsl(41, 36%, 84%);
+  background: hsl(41, 36%, 84%); 
+  padding: 1em;
 }
 
 #infoContainer {
-  margin-left: 1em;
   display: grid;
   grid-template-columns: 200px 400px;
 }
@@ -37,6 +37,10 @@ th {
   display: none;
 }
 
+.codeBox {
+  min-width: 30em;
+}
+
 .regionImg {
   display: block;
   width: 100px;
@@ -45,10 +49,10 @@ th {
 #regionsContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  margin-top: 0.5em;
 }
 
 .regionContainer {
-  margin: 0.5em;
   padding: 0.5em;
 }
 
