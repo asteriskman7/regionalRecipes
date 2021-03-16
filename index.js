@@ -2,18 +2,15 @@
 
 /*
 TODO:
-  display item value
-  display item rates for non-region items
-  only enable upgrade buttons when purchasable
-  display item rates and purchase info and enable button when available and make button do something
-  give option to disable buidling so you can collect items for transport
-
+  tune (must generate faster or make generation improvmenet upgrades cheaper)
+  use number formatting function instead of displaying raw numbers
 */
 
 class App {
   constructor() {
     this.regionNames = 'Volcano,Desert,Ice,Forest'.split`,`;
-    this.itemList = "stake,youth,spear,tag,blade,team,drake,aide,lord,slope,depot,cacao,dart,cash,enemy,corn,chalk,brace,vodka,pit,beet,pay,group,usher,lad,bark,means,toot,owl,noun,pecan,query,belt,chip,tower,plow,lyre,cone,fate,feast,equal,envy,crop,giant,inbox,feel,stalk,yoga,down,eaves,color,guess,hit,epoxy,mix,suck,rider,cube,nuke,shop,class,prow,prior,flat,spine,fob,gun,wrap,manor,ore,right,inn,verb,swamp,cot,pain,snow,bead,tour,wheat,price,taco,yang,pupa,slash,song,pole,kitty,jeep,dump,deed,match,novel,bake,spell,toy,dozen,start,crate,drug,baby,perch,birch,oil,purse,uncle,cow,mass,leek,perp,snuck,boar,fawn,seal,scene,wok,opium,sheet,top,shore,tap,radar,text,prose,hire,ear,chap,drama,syrup,mud,kazoo,past,age,body,share,west,drag,treat,habit,wharf,wit,tenet,bread,depth,wave,whale,talk,fig,asset,turf,shed,lag,trout,upper,aside,craw,beach,glass,tale,finer,canal,blog,topic,loaf,kale,gold,info,claw,storm,need,hop,chaos,genre,tweet,lark,hide,maple,cap,chin,yam,wind,louse,aim,back,adobe,gown,smog,spud,dwell,floor,dune,grace,goat,owner,grill,front,frost,sash,tuber,spelt,aid,icing,bulk,hill,venom,wine,clank,towel,skin,lieu,fold,meat,boot,level,derby,wheel,brood,short,bend,brand,jump,grin,cycle,bun,scope,wear,hold,glue,latte,stone,math,coat,purr,raft,pun,white,bug,wrong,wreck,slide,sprag,guava,torte,dryer,canoe,hobby,curl,yolk,fill,hope,slaw,mover,month,dip,coil,drive,light,chasm,pearl,pig,mango,media,drain,tune,madam,taste,dime,blast,paint,gnat,stot,roar,sail,film,panda,sill,dance,harm,pimp,pizza,hunt,kill,tempo,bet,wifi,grain,net,rug,actor,hint,crow,brick,cub,mint,spite,potty,lily,glen,humor,party,lung,ferry,lipid,pad,pen,wild,yard,final,pupil,bath,waist,kite,elver,link,opera,unity,cello,clamp,wage,dare,put,grey,stand,troop,hound,merit,bride,thump,air,movie,puma,arrow,fund,bidet,row,poker,break,eye,heir,park,sonar,birth,cross,glee,hose,sense,niece,lane,cabin,monk,lace,fairy,quest,puppy,king,pond,bird,chill,fail,attic,foray,claim,proof,bail,bayou,pork,seed,basin,jack,print,hug,tub,hub,graft,liver,vest,leaf,gem,donut,sari,patty,event,chord,wish,poem,stop,squid,oboe,fruit,show,bunch,sushi,mound,twist,south,meal,food,few,mark,candy".split`,`;
+    this.regionSymbols = ['\u{1f30b}', '\u{1f335}', '\u{1f976}', '\u{1f332}'];
+    this.itemList = "stake,youth,spear,tag,blade,team,drake,aide,lord,slope,depot,cacao,dart,cash,enemy,corn,chalk,brace,vodka,pit,beet,pay,group,usher,lad,bark,means,toot,owl,noun,pecan,query,belt,chip,tower,plow,lyre,cone,fate,feast,equal,envy,crop,giant,inbox,feel,stalk,yoga,down,eaves,color,guess,hit,epoxy,mix,suck,rider,cube,nuke,shop,class,prow,prior,flat,spine,fob,gun,wrap,manor,ore,right,inn,verb,swamp,cot,pain,fish,bead,tour,wheat,price,taco,yang,pupa,slash,song,pole,kitty,jeep,dump,deed,match,novel,bake,spell,toy,dozen,start,crate,lava,baby,perch,birch,oil,purse,uncle,cow,mass,leek,perp,snuck,boar,fawn,seal,scene,wok,opium,sheet,top,shore,tap,radar,text,prose,hire,ear,chap,drama,syrup,mud,kazoo,past,age,body,share,west,drag,treat,habit,wharf,wit,tenet,bread,depth,wave,whale,talk,fig,asset,turf,shed,lag,trout,upper,aside,craw,beach,glass,tale,finer,canal,blog,topic,loaf,kale,gold,info,claw,storm,need,hop,chaos,genre,tweet,lark,hide,maple,cap,chin,yam,wind,louse,aim,back,adobe,gown,smog,spud,dwell,floor,dune,grace,goat,owner,grill,front,frost,sash,tuber,sand,aid,icing,bulk,hill,venom,wine,clank,towel,skin,lieu,fold,meat,boot,level,derby,wheel,brood,short,bend,brand,jump,grin,cycle,bun,scope,wear,hold,glue,latte,stone,math,coat,purr,raft,pun,white,bug,wrong,wreck,slide,sprag,guava,torte,dryer,canoe,hobby,curl,yolk,fill,hope,slaw,mover,month,dip,coil,drive,light,chasm,pearl,pig,mango,media,drain,tune,madam,taste,dime,blast,paint,gnat,stot,roar,sail,film,panda,sill,dance,harm,pimp,pizza,hunt,kill,tempo,bet,wifi,grain,net,rug,actor,hint,crow,brick,cub,mint,spite,potty,lily,glen,humor,snow,lung,ferry,lipid,pad,pen,wild,yard,final,pupil,bath,waist,kite,elver,link,opera,unity,cello,clamp,wage,dare,put,grey,stand,troop,hound,merit,bride,thump,air,movie,puma,arrow,fund,bidet,row,poker,break,eye,heir,park,sonar,birth,cross,glee,hose,sense,niece,lane,cabin,monk,lace,fairy,quest,puppy,king,pond,bird,chill,fail,attic,foray,claim,proof,bail,bayou,pork,seed,basin,jack,print,hug,tub,hub,graft,liver,vest,leaf,gem,donut,sari,patty,event,chord,wish,poem,stop,squid,oboe,fruit,show,bunch,sushi,mound,twist,south,meal,food,few,mark,wood".split`,`;
     this.loadState();
     this.initUI(); 
 
@@ -164,7 +161,8 @@ class App {
 
       if (v !== 'cash') {
         this.UI[v + 'Cost'] = document.getElementById(v + 'Cost');
-        document.getElementById(v + 'Btn').onclick = () => this.buyUpgrade(v);
+        this.UI[v + 'Btn'] = document.getElementById(v + 'Btn');
+        this.UI[v + 'Btn'].onclick = () => this.buyUpgrade(v);
       }
     });
 
@@ -181,15 +179,21 @@ class App {
     const allRegionsContainer = document.getElementById('regionsContainer');
     for (let i = 0; i < 4; i++) {
       const container = this.createElement('div', `region${i}Container`, allRegionsContainer, 'regionContainer');
-      const regionLabel = this.createElement('div', `region${i}Label`, container, 'regionLabel', `${this.regionNames[i]} region items`);
+      const regionLabel = this.createElement('div', `region${i}Label`, container, 'regionLabel', `${this.regionSymbols[i]}${this.regionNames[i]} region items`);
       const ul = this.createElement('ul', `region${i}List`, container, 'regionUL');
       for (let j = 0; j < 100; j++) {
         const li = this.createElement('li', `region${i}Item${j}Container`, ul, 'regionLI');
-        const itemName = this.createElement('span', `region${i}Item${j}Name`, li, 'itemName', this.itemList[i * 100 + j]);
+        const itemNameString = this.itemList[i * 100 + j];
+        const itemName = this.createElement('span', `region${i}Item${j}Name`, li, 'itemName', itemNameString);
+        itemName.title = `value: ${this.formatNumber(this.itemInfo[i * 100 + j].value)} rate: ${this.formatNumber(this.state.itemStates[i * 100 + j].rate)}`;
         const itemCount = this.createElement('span', `region${i}Item${j}Count`, li, 'itemCount');
         this.drawItemCount(i, j, i * 100 + j);
         const itemSell = this.createElement('input', `region${i}Item${j}Sell`, li, 'itemSell');
         itemSell.type = 'checkbox';
+        itemSell.title = `sell ${itemNameString}`;
+        const itemPause = this.createElement('input', `region${i}Item${j}Pause`, li, 'itemPause');
+        itemPause.type = 'checkbox';
+        itemPause.title = `pause ${itemNameString}`;
 
         if (i === this.state.region) {
           li.onmouseover = () => this.highlightRequirements(i * 100 + j);
@@ -199,7 +203,6 @@ class App {
         }
       }
     }
-
 
   }
 
@@ -288,22 +291,24 @@ class App {
 
         if (region === this.state.region) {
           const reqs = this.itemInfo[itemIndex].requirements;
-          if (reqs.length > 0) {
-            //TODO: handle delta time here
-            const minReq = Math.floor(reqs.map(v => this.state.itemStates[v].count).reduce( (acc, e) => Math.min(acc, e) ));
-            if (minReq >= this.state.reqCount) {
-              const buildCount = Math.min(this.state.maxBuild, Math.floor(minReq / this.state.reqCount));
-              this.state.itemStates[itemIndex].count += buildCount * this.state.buildMult;
-              this.drawItemCount(region, localIndex, itemIndex);
+          if (!this.UI[`region${region}Item${localIndex}Pause`].checked) {
+            if (reqs.length > 0) {
+              //TODO: handle delta time here
+              const minReq = Math.floor(reqs.map(v => this.state.itemStates[v].count).reduce( (acc, e) => Math.min(acc, e) ));
+              if (minReq >= this.state.reqCount) {
+                const buildCount = Math.min(this.state.maxBuild, Math.floor(minReq / this.state.reqCount));
+                this.state.itemStates[itemIndex].count += buildCount * this.state.buildMult;
+                this.drawItemCount(region, localIndex, itemIndex);
 
-              reqs.forEach( v => {
-                this.state.itemStates[v].count -= buildCount * this.state.reqCount;
-                this.drawItemCount(Math.floor(v / 100), v % 100, v);
-              });
+                reqs.forEach( v => {
+                  this.state.itemStates[v].count -= buildCount * this.state.reqCount;
+                  this.drawItemCount(Math.floor(v / 100), v % 100, v);
+                });
+              }
+            } else {
+              this.state.itemStates[itemIndex].count += this.state.itemStates[itemIndex].rate * deltaTime;
+              this.drawItemCount(region, localIndex, itemIndex);
             }
-          } else {
-            this.state.itemStates[itemIndex].count += this.state.itemStates[itemIndex].rate * deltaTime;
-            this.drawItemCount(region, localIndex, itemIndex);
           }
           //if enabled, sell item
           if (this.UI[`region${region}Item${localIndex}Sell`].checked) {
@@ -316,23 +321,34 @@ class App {
           }
 
         } else {
-          this.state.itemStates[itemIndex].count += this.state.itemStates[itemIndex].rate * deltaTime;
-          this.drawItemCount(region, localIndex, itemIndex);
+          if (!this.UI[`region${region}Item${localIndex}Pause`].checked) {
+            this.state.itemStates[itemIndex].count += this.state.itemStates[itemIndex].rate * deltaTime;
+            this.drawItemCount(region, localIndex, itemIndex);
+          }
         }
       }
     }
 
-    this.UI.cashVal.innerText = Math.floor(this.state.cash);
+    this.UI.cashVal.innerText = this.getCashSymbol() + this.formatNumber(Math.floor(this.state.cash));
+    this.updateUpgradeButtonStates();
 
     this.lastTick = curTime;
   }
 
+  updateUpgradeButtonStates() {
+    'reqCount,sellRate,buildMult,maxBuild'.split`,`.forEach( v => {
+        const cost = this.getCost(v);
+        this.UI[v + 'Btn'].disabled = cost > this.state.cash;
+    });
+  }
+
   drawUpgradeDisplay() {
     'cash,reqCount,sellRate,buildMult,maxBuild'.split`,`.forEach( v => {
-      this.UI[v + 'Val'].innerText = Math.floor(this.state[v]);
-
+      this.UI[v + 'Val'].innerText = this.formatNumber(Math.floor(this.state[v]));
+      
       if (v !== 'cash') {
-        this.UI[v + 'Cost'].innerText = this.getCost(v);
+        const cost = this.formatNumber(this.getCost(v));
+        this.UI[v + 'Cost'].innerText = this.getCashSymbol() + cost;
       }
     });
   }
@@ -462,6 +478,15 @@ class App {
     } catch (error) {
       alert(`Unable to import string "${importString}". Expected something like '["city","item","code"]' or this code has already been imported.`);
     }
+  }
+
+  formatNumber(n) {
+    if (n < 1000) {return n};
+    return n.toExponential(3);
+  }
+
+  getCashSymbol() {
+    return this.regionSymbols[this.state.region];
   }
 }
 

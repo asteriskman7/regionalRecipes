@@ -82,7 +82,8 @@ th {
 
 .regionLI {
   display: grid;
-  grid-template-columns: 3.5em repeat(3, 1fr);
+  grid-template-columns: 3.5em repeat(4, 1fr);
+  height: 1.25em;
 }
 
 .itemHighlight {
