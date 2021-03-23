@@ -28,10 +28,31 @@
         <tr><td title='Number of items to build per input count'>Build Multiplier</td><td id='buildMultVal'>?</td><td id='buildMultCost'>?</td><td><button id='buildMultBtn'>Buy</button></td></tr>
         <tr><td title='Max number of items to build per tick'>Max Build</td>          <td id='maxBuildVal'>?</td> <td id='maxBuildCost'>?</td> <td><button id='maxBuildBtn'>Buy</button></td></tr>
       </table>
+      <div>
+        <button id='helpOpen'>Help</button>
+        <button id='reset'>Reset</button>
+        <a href='https://discord.gg/uzzKHFN9xQ'>Share Exports on Discord</a>
+        <span class='label'>Disable confirmations</span><input id='confirmCheck' type='checkbox'>
+      </div>
     </div>
     <div><span class='label'>Last Export: </span><input type='text' id='exportText' class='codeBox'></input></div>
     <div><span class='label'>Import String: </span><input type='text' id='importText' class='codeBox'></input><button id='btnImport'>Import</button></div>
     <div id='regionsContainer'>
+    </div>
+    <div id='helpDiv'>
+      <strong>How to play:</strong>
+      <ol>
+        <li>Create items in your assigned region.</li>
+        <li>The top item crafts for free, everything else is crafted from other items.</li> 
+        <li>Select the sell checkbox to sell items for cash.</li>
+        <li>Buy upgrades with cash to improve creation speed.</li>
+        <li>Crafting higher level items requires items from other regions.</li>
+        <li>Export your items and send the export code to others (via external social media).</li>
+        <li>Use the pause crafting button to stock up on items below prior to export.</li>
+        <li>Import codes from others to increase production rates.</li>
+        <li>Try to create the final item in your region!</li>
+      </ol>
+      <button id='helpClose'>Close</button>
     </div>
     <script src="index.js"></script>
   </body>

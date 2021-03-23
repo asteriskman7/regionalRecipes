@@ -3,14 +3,13 @@
 /*
 TODO:
   tune (must generate faster or make generation improvmenet upgrades cheaper)
-  use number formatting function instead of displaying raw numbers
 */
 
 class App {
   constructor() {
     this.regionNames = 'Volcano,Desert,Ice,Forest'.split`,`;
     this.regionSymbols = ['\u{1f30b}', '\u{1f335}', '\u{1f976}', '\u{1f332}'];
-    this.itemList = "stake,youth,spear,tag,blade,team,drake,aide,lord,slope,depot,cacao,dart,cash,enemy,corn,chalk,brace,vodka,pit,beet,pay,group,usher,lad,bark,means,toot,owl,noun,pecan,query,belt,chip,tower,plow,lyre,cone,fate,feast,equal,envy,crop,giant,inbox,feel,stalk,yoga,down,eaves,color,guess,hit,epoxy,mix,suck,rider,cube,nuke,shop,class,prow,prior,flat,spine,fob,gun,wrap,manor,ore,right,inn,verb,swamp,cot,pain,fish,bead,tour,wheat,price,taco,yang,pupa,slash,song,pole,kitty,jeep,dump,deed,match,novel,bake,spell,toy,dozen,start,crate,lava,baby,perch,birch,oil,purse,uncle,cow,mass,leek,perp,snuck,boar,fawn,seal,scene,wok,opium,sheet,top,shore,tap,radar,text,prose,hire,ear,chap,drama,syrup,mud,kazoo,past,age,body,share,west,drag,treat,habit,wharf,wit,tenet,bread,depth,wave,whale,talk,fig,asset,turf,shed,lag,trout,upper,aside,craw,beach,glass,tale,finer,canal,blog,topic,loaf,kale,gold,info,claw,storm,need,hop,chaos,genre,tweet,lark,hide,maple,cap,chin,yam,wind,louse,aim,back,adobe,gown,smog,spud,dwell,floor,dune,grace,goat,owner,grill,front,frost,sash,tuber,sand,aid,icing,bulk,hill,venom,wine,clank,towel,skin,lieu,fold,meat,boot,level,derby,wheel,brood,short,bend,brand,jump,grin,cycle,bun,scope,wear,hold,glue,latte,stone,math,coat,purr,raft,pun,white,bug,wrong,wreck,slide,sprag,guava,torte,dryer,canoe,hobby,curl,yolk,fill,hope,slaw,mover,month,dip,coil,drive,light,chasm,pearl,pig,mango,media,drain,tune,madam,taste,dime,blast,paint,gnat,stot,roar,sail,film,panda,sill,dance,harm,pimp,pizza,hunt,kill,tempo,bet,wifi,grain,net,rug,actor,hint,crow,brick,cub,mint,spite,potty,lily,glen,humor,snow,lung,ferry,lipid,pad,pen,wild,yard,final,pupil,bath,waist,kite,elver,link,opera,unity,cello,clamp,wage,dare,put,grey,stand,troop,hound,merit,bride,thump,air,movie,puma,arrow,fund,bidet,row,poker,break,eye,heir,park,sonar,birth,cross,glee,hose,sense,niece,lane,cabin,monk,lace,fairy,quest,puppy,king,pond,bird,chill,fail,attic,foray,claim,proof,bail,bayou,pork,seed,basin,jack,print,hug,tub,hub,graft,liver,vest,leaf,gem,donut,sari,patty,event,chord,wish,poem,stop,squid,oboe,fruit,show,bunch,sushi,mound,twist,south,meal,food,few,mark,wood".split`,`;
+    this.itemList = "fire,youth,spear,tag,blade,team,drake,aide,lord,slope,depot,cacao,dart,cash,enemy,corn,chalk,brace,vodka,pit,beet,pay,group,usher,lad,bark,means,toot,owl,noun,pecan,query,belt,chip,tower,plow,lyre,cone,fate,feast,equal,envy,crop,giant,inbox,feel,stalk,yoga,down,eaves,color,guess,hit,epoxy,mix,suck,rider,cube,nuke,shop,class,prow,prior,flat,spine,fob,gun,wrap,manor,ore,right,inn,verb,swamp,cot,pain,fish,bead,tour,wheat,price,taco,yang,pupa,slash,song,pole,kitty,jeep,dump,deed,match,novel,bake,spell,toy,dozen,start,crate,lava,sand,perch,birch,oil,purse,uncle,cow,mass,leek,perp,snuck,boar,fawn,seal,scene,wok,opium,sheet,top,shore,tap,radar,text,prose,hire,ear,chap,drama,syrup,mud,kazoo,past,age,body,share,west,drag,treat,habit,wharf,wit,tenet,bread,depth,wave,whale,talk,fig,asset,turf,shed,lag,trout,upper,aside,craw,beach,glass,tale,finer,canal,blog,topic,loaf,kale,gold,info,claw,storm,need,hop,chaos,genre,tweet,lark,hide,maple,cap,chin,yam,wind,louse,aim,back,adobe,gown,smog,spud,dwell,floor,dune,grace,goat,owner,grill,front,aid,sash,tuber,pyramid,frost,icing,bulk,hill,venom,wine,clank,towel,skin,lieu,fold,meat,boot,level,derby,wheel,brood,short,bend,brand,jump,grin,cycle,bun,scope,wear,hold,glue,latte,stone,math,coat,purr,raft,pun,white,bug,wrong,wreck,slide,sprag,guava,torte,dryer,canoe,hobby,curl,yolk,fill,hope,slaw,mover,month,dip,coil,drive,light,chasm,pearl,pig,mango,media,drain,tune,madam,taste,dime,blast,paint,gnat,stot,roar,sail,film,panda,sill,dance,harm,pimp,pizza,hunt,kill,tempo,bet,wifi,grain,net,rug,actor,hint,crow,brick,cub,mint,spite,potty,lily,glen,humor,snow,leaf,ferry,lipid,pad,pen,wild,yard,final,pupil,bath,waist,kite,elver,link,opera,unity,cello,clamp,wage,dare,put,grey,stand,troop,hound,merit,bride,thump,air,movie,puma,arrow,fund,bidet,row,poker,break,eye,heir,park,sonar,birth,cross,glee,hose,sense,niece,lane,cabin,monk,lace,fairy,quest,puppy,king,pond,bird,chill,fail,attic,foray,claim,proof,bail,bayou,pork,seed,basin,jack,print,hug,tub,hub,graft,liver,vest,lung,gem,donut,sari,patty,event,chord,wish,poem,stop,squid,oboe,fruit,show,bunch,sushi,mound,twist,south,meal,food,few,mark,wood".split`,`;
     this.loadState();
     this.initUI(); 
 
@@ -32,6 +31,8 @@ class App {
       while (cityName === null || cityName.length < 3 || cityName.length > 30) {
         cityName = prompt(`Please name your city with between 3 and 30 characters.\nYou will need to give this name to other people so choose something you don't find embarassing.`);
       }
+
+      alert(`You have created ${cityName}, a member of the ${this.regionNames[this.nameToRegion(cityName)]} region!`);
     }
 
     this.state = {
@@ -169,9 +170,12 @@ class App {
     this.drawUpgradeDisplay();
 
     document.getElementById('btnImport').onclick = () => this.doImport();
+    document.getElementById('helpOpen').onclick = () => this.showHelp();
+    document.getElementById('helpClose').onclick = () => this.hideHelp();
+    document.getElementById('reset').onclick = () => this.guiReset();
 
     //save misc elements
-    'exportText,importText'.split`,`.forEach( id => {
+    'exportText,importText,confirmCheck'.split`,`.forEach( id => {
       this.UI[id] = document.getElementById(id);
     });
 
@@ -230,25 +234,6 @@ class App {
       const localIndex = v % 100;
       this.UI[`region${region}Item${localIndex}Container`].classList.add('reqHighlight');
     });
-  }
-
-  rnd(seed) {
-    let x = Math.sin(seed) * 10000;
-    return x - Math.floor(x);
-  }
-
-  randomizeArray(source) {
-    const result = [];
-    let seed = 555;
-
-    while (source.length > 0) {
-      seed = this.rnd(seed);
-      let rnd = Math.floor(seed * source.length);
-      result.push(source[rnd]);
-      source.splice(rnd,1);
-    }
-
-    return result;
   }
 
   encode(key, plainText) {
@@ -390,7 +375,7 @@ class App {
     const itemCount = Math.floor(this.state.itemStates[itemIndex].count);
 
     let doExport = true;
-    if (this.state.exportPrompt) {
+    if (!this.UI.confirmCheck.checked) {
       doExport = confirm(`Are you sure you want to export ${itemCount} x ${itemName}? They will be removed from your inventory.`);
     }
 
@@ -411,7 +396,7 @@ class App {
 
   exportItemForce(region, localIndex, itemCount) {
     //export text looks like: ["cityname", "itemname", "code"]
-    //code is "itemIndex,count,cityname,nonce" encoded with name
+    //code is "nonce,count,ItemIndex" encoded with name
 
     const itemIndex = region * 100 + localIndex;
     const itemName = this.itemList[itemIndex];
@@ -487,6 +472,20 @@ class App {
 
   getCashSymbol() {
     return this.regionSymbols[this.state.region];
+  }
+
+  showHelp() {
+    document.getElementById('helpDiv').style.display = 'block';
+  }
+
+  hideHelp() {
+    document.getElementById('helpDiv').style.display = 'none';
+  }
+
+  guiReset() {
+    if (confirm('Are you sure you want to reset all progress?')) {
+      this.reset();
+    }
   }
 }
 
