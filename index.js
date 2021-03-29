@@ -3,6 +3,7 @@
 /*
 TODO:
   tune (must generate faster or make generation improvmenet upgrades cheaper)
+  enable selling of non-native region items
 */
 
 class App {
@@ -41,7 +42,7 @@ class App {
       cash: 0,
       reqCount: 10,
       sellRate: 1,
-      maxBuild: 1,
+      baseRate: 1,
       buildMult: 1,
       itemStates: [],
       consumedImports: {},
@@ -104,7 +105,7 @@ class App {
 
       const itemInfo = {
         requirements: requirements,
-        value: Math.ceil(Math.pow(1.8, localIndex))
+        value: Math.ceil(Math.pow(10, localIndex))
       }
 
       this.itemInfo.push(itemInfo);
@@ -157,7 +158,7 @@ class App {
     document.getElementById('regionName').innerText = this.regionNames[this.state.region];
     document.getElementById(`imgr${this.state.region}`).classList.add('regionImg');
 
-    'cash,reqCount,sellRate,buildMult,maxBuild'.split`,`.forEach( v => {
+    'cash,reqCount,sellRate,buildMult,baseRate'.split`,`.forEach( v => {
       this.UI[v + 'Val'] = document.getElementById(v + 'Val');
 
       if (v !== 'cash') {
@@ -281,7 +282,8 @@ class App {
               //TODO: handle delta time here
               const minReq = Math.floor(reqs.map(v => this.state.itemStates[v].count).reduce( (acc, e) => Math.min(acc, e) ));
               if (minReq >= this.state.reqCount) {
-                const buildCount = Math.min(this.state.maxBuild, Math.floor(minReq / this.state.reqCount));
+                //const buildCount = Math.min(this.state.maxBuild, Math.floor(minReq / this.state.reqCount));
+                const buildCount = Math.floor(minReq / this.state.reqCount);
                 this.state.itemStates[itemIndex].count += buildCount * this.state.buildMult;
                 this.drawItemCount(region, localIndex, itemIndex);
 
@@ -321,14 +323,14 @@ class App {
   }
 
   updateUpgradeButtonStates() {
-    'reqCount,sellRate,buildMult,maxBuild'.split`,`.forEach( v => {
+    'reqCount,sellRate,buildMult,baseRate'.split`,`.forEach( v => {
         const cost = this.getCost(v);
         this.UI[v + 'Btn'].disabled = cost > this.state.cash;
     });
   }
 
   drawUpgradeDisplay() {
-    'cash,reqCount,sellRate,buildMult,maxBuild'.split`,`.forEach( v => {
+    'cash,reqCount,sellRate,buildMult,baseRate'.split`,`.forEach( v => {
       this.UI[v + 'Val'].innerText = this.formatNumber(Math.floor(this.state[v]));
       
       if (v !== 'cash') {
@@ -343,8 +345,8 @@ class App {
     return {
       reqCount: (l) => {return l <= 1 ? Infinity : Math.pow(10 * 3, 10 - l)},
       sellRate: (l) => {return Math.pow(10 * 2, l)},
-      buildMult: (l) => {return Math.pow(100 * 3, l)},
-      maxBuild: (l) => {return Math.pow(20 * 2, l)},
+      buildMult: (l) => {return Math.pow(100 * 3, Math.log2(l))},
+      baseRate: (l) => {return Math.pow(10, Math.log2(l))},
     }[upgradeName](curLevel);
   }
 
@@ -358,7 +360,7 @@ class App {
         reqCount: (l) => l - 1,
         sellRate: (l) => l + 1,
         buildMult:(l) => l * 2,
-        maxBuild: (l) => l * 2
+        baseRate: (l) => {const result = l * 2; this.state.itemStates[this.state.region * 100].rate = result; return result;}
       }[upgradeName](curLevel);
 
       this.drawUpgradeDisplay();
