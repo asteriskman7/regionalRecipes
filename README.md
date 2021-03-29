@@ -1,4 +1,4 @@
-# regionalRecipes
+# ![regionalRecipes logo](/serverIcon.png?raw=true "Logo")regionalRecipes
 
 [Game link](http://asteriskman7.github.io/regionalRecipes)
 
