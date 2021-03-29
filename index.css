@@ -92,6 +92,10 @@ th {
   height: 1.25em;
 }
 
+.itemHeader {
+  font-weight: 800;
+}
+
 .itemHighlight {
   outline: 2px solid black;
 }

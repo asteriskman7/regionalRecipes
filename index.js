@@ -2,8 +2,6 @@
 
 /*
 TODO:
-  tune (must generate faster or make generation improvmenet upgrades cheaper)
-  enable selling of non-native region items
 */
 
 class App {
@@ -186,6 +184,14 @@ class App {
       const container = this.createElement('div', `region${i}Container`, allRegionsContainer, 'regionContainer');
       const regionLabel = this.createElement('div', `region${i}Label`, container, 'regionLabel', `${this.regionSymbols[i]}${this.regionNames[i]} region items`);
       const ul = this.createElement('ul', `region${i}List`, container, 'regionUL');
+      const li = this.createElement('li', `region${i}ItemHeader`, ul, 'regionLI');
+
+      //create region header
+      'Name,Count,Sell,Pause,Export'.split`,`.forEach( v => {
+        const text = i === this.state.region ? v : (v === 'Export' ? '' : v);
+        const headerElement = this.createElement('span', `region${i}ItemHeader${v}`, li, 'itemHeader', text);
+      });
+
       for (let j = 0; j < 100; j++) {
         const li = this.createElement('li', `region${i}Item${j}Container`, ul, 'regionLI');
         const itemNameString = this.itemList[i * 100 + j];
@@ -310,6 +316,14 @@ class App {
         } else {
           if (!this.UI[`region${region}Item${localIndex}Pause`].checked) {
             this.state.itemStates[itemIndex].count += this.state.itemStates[itemIndex].rate * deltaTime;
+            this.drawItemCount(region, localIndex, itemIndex);
+          }
+          if (this.UI[`region${region}Item${localIndex}Sell`].checked) {
+            const sellCount = Math.min(this.state.itemStates[itemIndex].count, deltaTime * this.state.sellRate);
+            const sellValue = this.itemInfo[itemIndex].value * sellCount;
+            this.state.cash += sellValue;
+
+            this.state.itemStates[itemIndex].count -= sellCount;
             this.drawItemCount(region, localIndex, itemIndex);
           }
         }
@@ -486,7 +500,9 @@ class App {
 
   guiReset() {
     if (confirm('Are you sure you want to reset all progress?')) {
-      this.reset();
+      if (confirm("Are you SURE you're SURE that you want to reset all progress? (last chance! THIS IS NOT A PRESTIGE!)")) {
+        this.reset();
+      }
     }
   }
 }
