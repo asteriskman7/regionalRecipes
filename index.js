@@ -457,7 +457,8 @@ class App {
       }
 
    
-      const pt = this.decode(icity, icode);
+      let pt = this.decode(icity, icode);
+      pt = pt.replace('Infinity', 'null');
       const importArray2 = JSON.parse(pt);
 
       //TODO: add more checking to make sure the input is valid
