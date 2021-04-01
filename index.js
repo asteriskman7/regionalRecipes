@@ -206,6 +206,7 @@ class App {
         itemPause.type = 'checkbox';
         itemPause.title = `pause ${itemNameString}`;
 
+
         if (i === this.state.region) {
           li.onmouseover = () => this.highlightRequirements(i * 100 + j);
 
@@ -266,7 +267,7 @@ class App {
   }
 
   drawItemCount(region, localIndex, itemIndex) {
-    this.UI[`region${region}Item${localIndex}Count`].innerText = Math.floor(this.state.itemStates[itemIndex].count);
+    this.UI[`region${region}Item${localIndex}Count`].innerText = this.formatNumber(Math.floor(this.state.itemStates[itemIndex].count));
   }
 
   tick() {
