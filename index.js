@@ -461,7 +461,10 @@ class App {
       const importArray2 = JSON.parse(pt);
 
       //TODO: add more checking to make sure the input is valid
-      const [inonce, icount, iindex] = importArray2;
+      let [inonce, icount, iindex] = importArray2;
+      if (icount === null) {
+        icount = Infinity;
+      }
       const iregion = Math.floor(iindex / 100);
       const ilocalIndex = iindex % 100;
       if (iregion === this.state.region) {
