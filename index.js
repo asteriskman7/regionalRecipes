@@ -114,6 +114,9 @@ class App {
       if (this.state.itemStates[i].count === null) {
         this.state.itemStates[i].count = Infinity;
       }
+      if (this.state.itemStates[i].rate === null) {
+        this.state.itemStates[i].rate = Infinity;
+      }
     }
 
     this.saveState();
@@ -298,16 +301,22 @@ class App {
               if (minReq >= this.state.reqCount) {
                 //const buildCount = Math.min(this.state.maxBuild, Math.floor(minReq / this.state.reqCount));
                 const buildCount = Math.floor(minReq / this.state.reqCount);
-                this.state.itemStates[itemIndex].count += buildCount * this.state.buildMult;
+                if (this.state.itemStates[itemIndex].count < Infinity) {
+                  this.state.itemStates[itemIndex].count += buildCount * this.state.buildMult;
+                }
                 this.drawItemCount(region, localIndex, itemIndex);
 
                 reqs.forEach( v => {
-                  this.state.itemStates[v].count -= buildCount * this.state.reqCount;
+                  if (this.state.itemStates[v].count < Infinity) {
+                    this.state.itemStates[v].count -= buildCount * this.state.reqCount;
+                  }
                   this.drawItemCount(Math.floor(v / 100), v % 100, v);
                 });
               }
             } else {
-              this.state.itemStates[itemIndex].count += this.state.itemStates[itemIndex].rate * deltaTime;
+              if (this.state.itemStates[itemIndex].count < Infinity) {
+                this.state.itemStates[itemIndex].count += this.state.itemStates[itemIndex].rate * deltaTime;
+              }
               this.drawItemCount(region, localIndex, itemIndex);
             }
           }
@@ -317,7 +326,9 @@ class App {
             const sellValue = this.itemInfo[itemIndex].value * sellCount;
             this.state.cash += sellValue;
 
-            this.state.itemStates[itemIndex].count -= sellCount;
+            if (this.state.itemStates[itemIndex].count < Infinity) {
+              this.state.itemStates[itemIndex].count -= sellCount;
+            }
             this.drawItemCount(region, localIndex, itemIndex);
           }
 
