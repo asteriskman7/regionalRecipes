@@ -169,7 +169,8 @@ class App {
 
     this.drawUpgradeDisplay();
 
-    document.getElementById('btnImport').onclick = () => this.doImport();
+    document.getElementById('btnImport').onclick = () => this.doImport;
+    document.getElementById('importText').onpaste = () => setTimeout(app.doImport.bind(app), 100);
     document.getElementById('helpOpen').onclick = () => this.showHelp();
     document.getElementById('helpClose').onclick = () => this.hideHelp();
     document.getElementById('reset').onclick = () => this.guiReset();
