@@ -1,7 +1,8 @@
 "use strict";
 
 /*
-TODO:
+TODO: keep header in fixed position as bottom scrolls
+
 */
 
 class App {
@@ -475,7 +476,9 @@ class App {
       this.state.consumedImports[icode] = 1;
 
       const itemName = this.itemList[iindex];
-      alert(`Successfully imported ${icount} x ${itemName}!`);
+      if (!this.UI.confirmCheck.checked) {
+        alert(`Successfully imported ${icount} x ${itemName}!`);
+      }
 
     } catch (error) {
       alert(`Unable to import string "${importString}". Expected something like '["city","item","code"]' or this code has already been imported.`);
