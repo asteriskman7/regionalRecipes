@@ -22,6 +22,12 @@ body {
   padding: 1em;
 }
 
+#header {
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+}
+
 #infoContainer {
   display: grid;
   grid-template-columns: 250px 450px 300px;
