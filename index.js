@@ -402,7 +402,10 @@ class App {
 
     const nonce = Math.floor(Math.random() * 0xFFFFFFFF);
     const code = this.encode(this.state.cityName, `[${nonce},${itemCount},${itemIndex}]`);
-    this.state.itemStates[itemIndex].count -= itemCount;
+    if (itemCount < Infinity) {
+      this.state.itemStates[itemIndex].count -= itemCount;
+    }
+
     this.drawItemCount(region, localIndex, itemIndex);
 
     const exportString = `["${this.state.cityName}","${itemName}","${code}"]`;
