@@ -110,6 +110,11 @@ class App {
       this.itemInfo.push(itemInfo);
     });
 
+    for (let i = 0; i < 400; i++) {
+      if (this.state.itemStates[i].count === null) {
+        this.state.itemStates[i].count = Infinity;
+      }
+    }
 
     this.saveState();
   }
