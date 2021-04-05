@@ -407,7 +407,7 @@ class App {
 
     const itemIndex = region * 100 + localIndex;
     const itemName = this.itemList[itemIndex];
-    const itemCount = Math.floor(this.state.itemStates[itemIndex].count);
+    const itemCount = this.formatNumber(Math.floor(this.state.itemStates[itemIndex].count));
 
     let doExport = true;
     if (!this.UI.confirmCheck.checked) {
