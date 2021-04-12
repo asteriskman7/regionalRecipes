@@ -493,6 +493,7 @@ class App {
       } else {
         //importing from other regions increases the rate 
         this.state.itemStates[iindex].rate += icount;
+        this.UI[`region${iregion}Item${ilocalIndex}Name`].title = `value: ${this.formatNumber(this.itemInfo[iindex].value)} rate: ${this.formatNumber(this.state.itemStates[iindex].rate)}`;
       }
 
       this.drawItemCount(iregion, ilocalIndex, iindex);
