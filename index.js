@@ -114,6 +114,9 @@ class App {
       if (this.state.itemStates[i].count === null) {
         this.state.itemStates[i].count = Infinity;
       }
+      if (this.state.itemStates[i].count < 0) {
+        this.state.itemStates[i].count = 0;
+      }
       if (this.state.itemStates[i].rate === null) {
         this.state.itemStates[i].rate = Infinity;
       }
@@ -419,7 +422,7 @@ class App {
     const nonce = Math.floor(Math.random() * 0xFFFFFFFF);
     const code = this.encode(this.state.cityName, `[${nonce},${itemCount},${itemIndex}]`);
     if (itemCount < Infinity) {
-      this.state.itemStates[itemIndex].count -= itemCount;
+      this.state.itemStates[itemIndex].count = 0;
     }
 
     this.drawItemCount(region, localIndex, itemIndex);
